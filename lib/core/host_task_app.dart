@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:host_task/core/invitee_model.dart';
+import 'package:host_task/moment_invite/atoms/circular_person.dart';
 import 'package:host_task/moment_invite/moment_controller.dart';
 import 'package:host_task/moment_invite/organisms/circular_arrangement.dart';
+import 'package:host_task/theme/host_task_theme.dart';
 
 class HostTaskApp extends StatelessWidget {
   const HostTaskApp({super.key});
@@ -10,10 +13,7 @@ class HostTaskApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Host Task',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: HostTheme.lightTheme(context),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Circular Arrangement'),
@@ -21,7 +21,7 @@ class HostTaskApp extends StatelessWidget {
         body: const Center(
           child: Column(
             children: [
-              CircularArrangement(),
+              CircularArrangementOrganism(),
             ],
           ),
         ),
@@ -42,8 +42,9 @@ class FloatingActionButtonsMolecule extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FloatingActionButton(
-          onPressed: () =>
-              ref.read(momentControllerProvider.notifier).addItem(),
+          onPressed: () => ref.read(momentControllerProvider.notifier).addItem(
+                Invitee(id: 333, photoUrl: mary),
+              ),
           tooltip: 'Add',
           child: const Icon(Icons.add),
         ),
@@ -60,20 +61,3 @@ class FloatingActionButtonsMolecule extends ConsumerWidget {
     );
   }
 }
-
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//         useMaterial3: true,
-//       ),
-//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }

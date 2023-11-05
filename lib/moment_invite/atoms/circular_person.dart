@@ -19,7 +19,6 @@ class CircularPersonAtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Animate(
-
         // onPlay: (controller) => isHost ? null : controller.repeat(),
         effects: const [
           // ShakeEffect(hz: isHost ? 0 : 1.7),
@@ -30,7 +29,7 @@ class CircularPersonAtom extends StatelessWidget {
           radius: isHost ? 28 : 18,
           child: isHost
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Material(
                     color: Colors.black.withAlpha(150),
                     shape: RoundedRectangleBorder(
@@ -38,7 +37,7 @@ class CircularPersonAtom extends StatelessWidget {
                     ),
                     child: const Text(
                       '  Host  ',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 )
