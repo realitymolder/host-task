@@ -25,26 +25,22 @@ class CircularPersonAtom extends StatelessWidget {
           FadeEffect(),
         ],
         child: CircleAvatar(
-          backgroundImage: const NetworkImage(mary),
-          radius: isHost ? 28 : 18,
-          child: isHost
-              ? Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Material(
-                    color: Colors.black.withAlpha(150),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+            backgroundImage: const NetworkImage(mary),
+            radius: isHost ? 28 : 18,
+            child: isHost
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Material(
+                      color: Colors.black.withAlpha(150),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        '  Host  ',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
-                    child: const Text(
-                      '  Host  ',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                  ),
-                )
-              : Text(
-                  content,
-                  style: const TextStyle(fontSize: 12, color: Colors.green),
-                ),
-        ));
+                  )
+                : const SizedBox.shrink()));
   }
 }

@@ -10,18 +10,17 @@ class CTATextAtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Animate(
       effects: const [
-        FadeEffect(
-          duration: Duration(milliseconds: 500),
-        )
+        MoveEffect(duration: Duration(milliseconds: 250)),
+        FadeEffect(duration: Duration(milliseconds: 500))
       ],
-      child: const Positioned(
+      child: Positioned(
         bottom: 20,
         left: 45,
         child: Text(
           'Invite some \nfriends!',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xFF9a83ef),
+            color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.w500,
             fontSize: 18,
           ),
