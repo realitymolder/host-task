@@ -39,12 +39,16 @@ class MomentController extends StateNotifier<MomentState> {
 
           state = state.copyWith(inviteesCircles: circles);
         } else {
-          positionElementsInCircle(Mode.add);
+          if (counter <= 8) {
+            positionElementsInCircle(Mode.add);
+          }
         }
       case Mode.remove:
-        counter--;
-        state = state.copyWith(inviteesCounter: counter);
-        positionElementsInCircle(Mode.remove);
+        if (counter != 0) {
+          counter--;
+          state = state.copyWith(inviteesCounter: counter);
+          positionElementsInCircle(Mode.remove);
+        }
     }
   }
 
