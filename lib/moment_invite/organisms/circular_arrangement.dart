@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:host_task/moment_invite/atoms/circular_person.dart';
+import 'package:host_task/moment_invite/atoms/cta_text.dart';
 import 'package:host_task/moment_invite/moment_controller.dart';
 
 class CircularArrangementOrganism extends ConsumerWidget {
@@ -32,7 +32,10 @@ class CircularArrangementOrganism extends ConsumerWidget {
                 ),
               ),
             ),
-            ...momentState.inviteesCircles,
+            if (momentState.inviteesCircles.isEmpty)
+              const CTATextAtom()
+            else
+              ...momentState.inviteesCircles,
           ],
         ),
       ),

@@ -10,8 +10,8 @@ class AddedInviteesIndicatorAtom extends ConsumerWidget {
     final state = ref.watch(momentControllerProvider);
     return CircleAvatar(
       radius: 18,
-      backgroundColor: Colors.purple,
-      child: Text('+${state.invitees.length - 7}'),
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Text('+${state.inviteesCounter - 7}'),
     );
   }
 }

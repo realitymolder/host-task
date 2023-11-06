@@ -3,46 +3,43 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:host_task/core/invitee_model.dart';
-import 'package:host_task/moment_invite/atoms/cta_text.dart';
-
 class MomentState {
-  final List<Invitee> invitees;
   final List<Widget> inviteesCircles;
+  final int inviteesCounter;
   MomentState({
-    required this.invitees,
     required this.inviteesCircles,
+    required this.inviteesCounter,
   });
 
   factory MomentState.initial() {
     return MomentState(
-      inviteesCircles: [const CTATextAtom()],
-      invitees: [],
+      inviteesCircles: [],
+      inviteesCounter: 0,
     );
   }
 
   MomentState copyWith({
-    List<Invitee>? invitees,
     List<Widget>? inviteesCircles,
+    int? inviteesCounter,
   }) {
     return MomentState(
-      invitees: invitees ?? this.invitees,
       inviteesCircles: inviteesCircles ?? this.inviteesCircles,
+      inviteesCounter: inviteesCounter ?? this.inviteesCounter,
     );
   }
 
   @override
   String toString() =>
-      'MomentState(invitees: $invitees, inviteesCircles: $inviteesCircles)';
+      'MomentState(inviteesCircles: $inviteesCircles, inviteesCounter: $inviteesCounter)';
 
   @override
   bool operator ==(covariant MomentState other) {
     if (identical(this, other)) return true;
 
-    return listEquals(other.invitees, invitees) &&
-        listEquals(other.inviteesCircles, inviteesCircles);
+    return listEquals(other.inviteesCircles, inviteesCircles) &&
+        other.inviteesCounter == inviteesCounter;
   }
 
   @override
-  int get hashCode => invitees.hashCode ^ inviteesCircles.hashCode;
+  int get hashCode => inviteesCircles.hashCode ^ inviteesCounter.hashCode;
 }
