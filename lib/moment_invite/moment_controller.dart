@@ -26,7 +26,7 @@ class MomentController extends StateNotifier<MomentState> {
       case Mode.add:
         counter++;
         state = state.copyWith(inviteesCounter: counter);
-        if (counter == 8) {
+        if (counter == 9) {
           List<Widget> circles = state.inviteesCircles
             ..add(
               const AnimatedPositioned(
@@ -36,18 +36,24 @@ class MomentController extends StateNotifier<MomentState> {
                 child: AddedInviteesIndicatorAtom(),
               ),
             );
-
           state = state.copyWith(inviteesCircles: circles);
         } else {
-          if (counter <= 8) {
-            positionElementsInCircle(Mode.add);
+          if (counter <= 9) {
+            positionElementsInCircle(Mode.remove);
           }
         }
       case Mode.remove:
         if (counter != 0) {
           counter--;
           state = state.copyWith(inviteesCounter: counter);
-          positionElementsInCircle(Mode.remove);
+          if (counter == 8) {
+            List<Widget> circles = state.inviteesCircles..removeLast();
+            state = state.copyWith(inviteesCircles: circles);
+          } else {
+            if (counter <= 8) {
+              positionElementsInCircle(Mode.add);
+            }
+          }
         }
     }
   }
@@ -74,55 +80,9 @@ class MomentController extends StateNotifier<MomentState> {
         ),
       );
     }
-
     state = state.copyWith(inviteesCircles: positionedItems);
   }
 }
-
-// void addInvitee(Invitee invitee) {
-//   if (state.inviteesCircles.length >= 8) {
-//     // Handle the case where there are more than 8 items (You can customize this logic)
-//     // For example, you can add an indicator or other elements.
-//     List<Widget> circles = state.inviteesCircles
-//       ..add(
-//         const AnimatedPositioned(
-//           duration: Duration(milliseconds: 400),
-//           left: 140,
-//           top: 80,
-//           child: AddedInviteesIndicatorAtom(),
-//         ),
-//       );
-
-//     state = state.copyWith(inviteesCircles: circles);
-//   } else {
-//     // addToInvitees(invitee);
-//     positionElementsInCircle(invitee);
-//   }
-// }
-
-// void removeInvitee() {
-//   // Case: indicator case
-//   if (state.inviteesCircles.length > 8) {
-//     List<Widget> inviteesC = state.inviteesCircles..removeLast();
-
-//     state = state.copyWith(inviteesCircles: inviteesC);
-//   } else if (state.inviteesCircles.length == 8) {
-//     // Case: going back from indicator to reg cirlce
-//     List<Widget> inviteesC = state.inviteesCircles..removeLast();
-
-//     state = state.copyWith(invitees: invitees, inviteesCircles: inviteesC);
-//   } else {
-//     // Case: circle population case
-//     List<Widget> circles = state.inviteesCircles;
-//     if (people.isNotEmpty) {
-//       people.removeLast();
-//       state = state.copyWith(invitees: people, inviteesCircles: circles);
-//     }
-//     if (state.inviteesCircles.isEmpty) {
-//       state = MomentState.initial();
-//     }
-//   }
-// }
 
 enum Mode {
   add,
